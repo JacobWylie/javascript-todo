@@ -50,6 +50,8 @@ var addTask = function() {
 	// Append listItem to incompleteTaskHolder
 	incompleteTasksHolder.appendChild(listItem);
 	bindTaskEvents(listItem, taskCompleted);
+
+	taskInput.value = "";
 }
 
 // Edit an existing task
@@ -119,8 +121,13 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
 	checkBox.onchange = checkBoxEventHandler;
 }
 
+var ajaxRequest = function() {
+	console.log("AJAX request")
+}
+
 // Set the click handler to the addTask function
-addButton.onclick = addTask;
+addButton.addEventListener("click", addTask);
+addButton.addEventListener("click", ajaxRequest);
 
 // Cycle over incompleteTasksHolder ul list items
 for(var i = 0; i < incompleteTasksHolder.children.length; i++) {
