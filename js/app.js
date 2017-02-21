@@ -55,15 +55,27 @@ var addTask = function() {
 // Edit an existing task
 var editTask = function() {
 	console.log("Edit Task....");
-	// When the edit button is pressed
-		// If the class of the parent is .editMode
-			// Switch from .editMode
-			// Label text become the input's value
-		// else
-			// Switch to .editMode
-			// Input value becomes the label's text
 
-		// Toggle .editMode on the parent
+	var listItem = this.parentNode;
+
+	var editInput = listItem.querySelector("input[type=text]");
+	var label = listItem.querySelector("label");
+
+	var containsClass = listItem.classList.contains("editMode");
+
+	// If the class of the parent is .editMode
+	if (containsClass) {
+		// Switch from .editMode
+		// Label text become the input's value
+		label.innerText = editInput.value;
+	} else {
+		// Switch to .editMode
+		// Input value becomes the label's text
+		editInput.value = label.innerText;
+	}
+
+	// Toggle .editMode on the list item
+	listItem.classList.toggle("editMode");
 }
 
 // Delete an existing task
